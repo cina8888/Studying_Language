@@ -82,7 +82,15 @@ where salary > (select salary from Employees where emp_name  = 'Mia'));
 Display employee names
 whose salary is not less than anyone in IT department
 */
-
+select emp_name
+from Employees
+where salary >= 
+(select min(salary) 
+from Employees 
+where dept_id = 
+(select dept_id 
+from Departments 
+where dept_name = 'IT'));
 /*
 Display employee names
 whose salary is greater than or equal to
