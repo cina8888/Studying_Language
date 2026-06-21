@@ -10,6 +10,9 @@ Your query must:
 ✔ Use PARTITION BY dept_id
 ✔ Use ORDER BY salary DESC
 */
+select emp_name, dept_id, salary, row_number() over (partition by dept_id order by  salary desc) as ranking
+from Employees;
+
 
 /* For each employee, return:
 employee name
@@ -18,4 +21,5 @@ salary
 the average salary of their department
 using a window function.
 */
-
+select emp_name, dept_id, salary, avg(salary) over (partition by dept_id) as avg_salary
+from Employees;
