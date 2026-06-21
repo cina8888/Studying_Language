@@ -3,6 +3,8 @@ Display employee name, salary,
 and a running total of salary across ALL employees,
 ordered by salary ascending.
 */
+select emp_name, salary, Sum(salary) over (order by salary) as total_salary	
+from Employees;
 
 /* For each employee, display:
 emp_name
@@ -11,6 +13,8 @@ salary
 running total of salary within their department,
 ordered from smallest salary to largest inside each department
 */
+select emp_name, dept_id, salary, sum(salary) over (partition by dept_id order by salary) as detailed_salary
+from Employees;
 
 /* Question (Aggregate Window – COUNT, single concept)
 For each employee, show:
@@ -19,6 +23,8 @@ dept_id
 salary
 the number of employees in that employee’s department
 */
+select emp_name, dept_id, salary, count(emp_id) over (partition by dept_id) as total_employees
+from Employees;
 
 /*
 Display each employee’s name, department, salary,
